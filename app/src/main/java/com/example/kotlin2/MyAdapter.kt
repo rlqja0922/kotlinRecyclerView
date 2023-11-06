@@ -11,6 +11,7 @@ class MyAdapter( var list : List<MemoEntity>,val deletelistener: deletelistener)
 
     inner class MyViewHolder(val binding: ItemMemoBinding ) : RecyclerView.ViewHolder(binding.root){
         val memo = binding.memoText
+        val remove = binding.memoRemove
         val root = binding.root
     }
 
@@ -24,12 +25,13 @@ class MyAdapter( var list : List<MemoEntity>,val deletelistener: deletelistener)
         val memo = list[position]
 
         holder.memo.text = memo.memo
-        holder.root.setOnLongClickListener(object : View.OnLongClickListener{
-            override fun onLongClick(v: View?): Boolean {
-                    deletelistener.onDeleteListener(memo)
-                return true
-            }
-        })
+        holder.remove.setOnClickListener { deletelistener.onDeleteListener(memo) }
+//        holder.root.setOnLongClickListener(object : View.OnLongClickListener{
+//            override fun onLongClick(v: View?): Boolean {
+//                    deletelistener.onDeleteListener(memo)
+//                return true
+//            }
+//        })
     }
 
     override fun getItemCount(): Int {
