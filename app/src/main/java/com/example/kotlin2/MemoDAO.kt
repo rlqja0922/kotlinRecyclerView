@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface MemoDAO {
@@ -16,4 +17,7 @@ interface MemoDAO {
 
     @Delete
     fun delete(memo: MemoEntity)
+
+    @Update
+    fun update(memo: MemoEntity)
 }

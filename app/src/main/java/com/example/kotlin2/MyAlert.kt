@@ -6,15 +6,20 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.Window
+import android.widget.EditText
 import android.widget.TextView
+import androidx.core.view.isGone
 import com.example.kotlin2.databinding.ActivityMyAlertBinding
 import com.example.kotlin2.databinding.AlertBinding
 
-class MyAlert(val context : Context, val deletelistener: deletelistener){
+class MyAlert(val context : Context, val deletelistener: deletelistener,val updatelistener: updatelistener,val alertint : Int){
     private lateinit var binding: ActivityMyAlertBinding
     private lateinit var btnOK : TextView
     private lateinit var btnCancel : TextView
+    private lateinit var alerttext : TextView
+    private lateinit var editupdate : EditText
     private val dlg = Dialog(context)
     fun show(memo:MemoEntity) {
         val layout = R.layout.activity_my_alert
@@ -24,15 +29,36 @@ class MyAlert(val context : Context, val deletelistener: deletelistener){
         dlg.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         btnOK = dlg.findViewById(R.id.alert1)
         btnCancel = dlg.findViewById(R.id.alert2)
+        editupdate = dlg.findViewById(R.id.editmemo)
+        alerttext = dlg.findViewById(R.id.alerttext)
 
-        //ok 버튼 동작
-        btnOK.setOnClickListener {
+        if (alertint==0){
+            editupdate.visibility = View.GONE
+            alerttext.visibility= View.VISIBLE
 
-            //TODO: 부모 액티비티로 내용을 돌려주기 위해 작성할 코드
+            //ok 버튼 동작
+            btnOK.setOnClickListener {
 
-                    deletelistener.onDeleteListener(memo)
-            dlg.dismiss()
+                //TODO: 부모 액티비티로 내용을 돌려주기 위해 작성할 코드
+
+                deletelistener.onDeleteListener(memo)
+                dlg.dismiss()
+            }
+        }else{
+            alerttext.visibility = View.GONE
+            editupdate.visibility= View.VISIBLE
+
+            //ok 버튼 동작
+            btnOK.setOnClickListener {
+
+                //TODO: 부모 액티비티로 내용을 돌려주기 위해 작성할 코드
+                memo.memo = editupdate.text.toString()
+                updatelistener.onupdateListener(memo)
+                dlg.dismiss()
+            }
+
         }
+
 
         //cancel 버튼 동작
         btnCancel.setOnClickListener {

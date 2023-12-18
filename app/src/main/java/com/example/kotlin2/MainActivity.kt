@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin2.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(),deletelistener {
+class MainActivity : AppCompatActivity(),deletelistener,updatelistener {
     lateinit var db : MemoDatabase
     private lateinit var binding : ActivityMainBinding
     var memoList = listOf<MemoEntity>()
@@ -69,13 +69,30 @@ class MainActivity : AppCompatActivity(),deletelistener {
         deleteTask.execute()
     }
 
+    fun updateMemo(memo : MemoEntity){
+        val updateTask = object :  AsyncTask<Unit,Unit,Unit>() {
+            override fun doInBackground(vararg p0: Unit?) {
+                db.memoDao().update(memo)
+            }
+
+            override fun onPostExecute(result: Unit?) {
+                super.onPostExecute(result)
+                getAllMemos()
+            }
+        }
+        updateTask.execute()
+    }
     fun setRecyclerView(memolist : List<MemoEntity>){
-        val adapter = MyAdapter(memolist,this)
+        val adapter = MyAdapter(memolist,this,this)
 
         binding.MemoRecyclerView.adapter = adapter
     }
 
     override fun onDeleteListener(memoEntity: MemoEntity) {
         deleteMemo(memoEntity)
+    }
+
+    override fun onupdateListener(memoEntity: MemoEntity) {
+        updateMemo(memoEntity)
     }
 }

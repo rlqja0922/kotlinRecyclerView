@@ -1,17 +1,19 @@
 package com.example.kotlin2
 
+import android.provider.SyncStateContract.Helpers.update
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin2.databinding.ItemMemoBinding
 
-class MyAdapter( var list : List<MemoEntity>,val deletelistener: deletelistener) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter( var list : List<MemoEntity>,val deletelistener: deletelistener, val updatelistener1 : updatelistener) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(val binding: ItemMemoBinding ) : RecyclerView.ViewHolder(binding.root){
         val memo = binding.memoText
         val remove = binding.memoRemove
         val root = binding.root
+        val update = binding.memoUpdate
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.MyViewHolder {
@@ -27,7 +29,11 @@ class MyAdapter( var list : List<MemoEntity>,val deletelistener: deletelistener)
         val context = holder.root.context
         holder.memo.text = memo.memo
         holder.remove.setOnClickListener {
-            val dlg = MyAlert(context, deletelistener)
+            val dlg = MyAlert(context, deletelistener,updatelistener1,0)
+            dlg.show(memo)
+        }
+        holder.update.setOnClickListener {
+            val dlg = MyAlert(context, deletelistener,updatelistener1,1)
             dlg.show(memo)
         }
 //        holder.root.setOnLongClickListener(object : View.OnLongClickListener{
