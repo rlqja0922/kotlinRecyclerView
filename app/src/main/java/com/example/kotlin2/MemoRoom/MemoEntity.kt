@@ -1,4 +1,4 @@
-package com.example.kotlin2
+package com.example.kotlin2.MemoRoom
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

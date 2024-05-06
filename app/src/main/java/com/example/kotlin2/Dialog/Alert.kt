@@ -1,4 +1,4 @@
-package com.example.kotlin2
+package com.example.kotlin2.Dialog
 
 import android.content.DialogInterface
 import android.os.Bundle

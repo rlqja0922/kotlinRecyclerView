@@ -4,64 +4,142 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="@color/white"
-    >
+    tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/mainGuide1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mainGuide2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mainGuide3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mainGuide4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mainGuide5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mainGuide6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mainGuide7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/main_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:layout_marginTop="30dp"
-        android:text="나만의 메모!"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="25dp"
+        android:text="@string/main_text"
+        app:layout_constraintBottom_toTopOf="@+id/mainGuide4"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuide3"
+        app:layout_constraintStart_toStartOf="@+id/mainGuide1"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editMemo"
+    <FrameLayout
+        android:layout_margin="10dp"
+        android:id="@+id/memo_fl"
         android:layout_width="0dp"
-        android:textSize="25dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="22dp"
-        android:layout_marginBottom="10dp"
-        android:textColorHint="@color/whiteblack"
-        android:textColor="@color/black"
-        android:hint="Add Memo..."
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/Buttonadd"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:text="Add"
-        android:textColor="@color/white"
-        android:background="@drawable/shapesolid"
-        app:layout_constraintBottom_toBottomOf="@id/editMemo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/editMemo" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/MemoRecyclerView"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/editMemo"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:background="@drawable/shapesolid"
+        app:layout_constraintBottom_toTopOf="@+id/mainGuide6"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuide2"
+        app:layout_constraintStart_toStartOf="@+id/mainGuide1"
+        app:layout_constraintTop_toTopOf="@+id/mainGuide5">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Memo!"
+            android:textSize="15dp"
+            android:textColor="@color/black"/>
+    </FrameLayout>
 
+    <FrameLayout
+        android:layout_margin="10dp"
+        android:id="@+id/coroutine_fl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shapesolid"
+        app:layout_constraintBottom_toTopOf="@+id/mainGuide6"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuide3"
+        app:layout_constraintStart_toStartOf="@+id/mainGuide2"
+        app:layout_constraintTop_toTopOf="@+id/mainGuide5" >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Coroutine!"
+            android:textSize="15dp"
+            android:textColor="@color/black"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/mvvm_fl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shapesolid"
+        app:layout_constraintBottom_toTopOf="@+id/mainGuide7"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuide2"
+        app:layout_constraintStart_toStartOf="@+id/mainGuide1"
+        app:layout_constraintTop_toTopOf="@+id/mainGuide6" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="MVVM!"
+            android:textSize="15dp"
+            android:textColor="@color/black"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/livedata_fl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shapesolid"
+        app:layout_constraintBottom_toTopOf="@+id/mainGuide7"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuide3"
+        app:layout_constraintStart_toStartOf="@+id/mainGuide2"
+        app:layout_constraintTop_toTopOf="@+id/mainGuide6" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="LiveData!"
+            android:textSize="15dp"
+            android:textColor="@color/black"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

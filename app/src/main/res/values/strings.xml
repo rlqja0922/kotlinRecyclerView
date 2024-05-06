@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Kotlin2</string>
+    <string name="main_text">코틀린 스터디 APP</string>
 </resources>

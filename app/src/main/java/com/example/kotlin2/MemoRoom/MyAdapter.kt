@@ -1,13 +1,12 @@
-package com.example.kotlin2
+package com.example.kotlin2.MemoRoom
 
-import android.provider.SyncStateContract.Helpers.update
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin2.CoustomeAlert.MyAlert
 import com.example.kotlin2.databinding.ItemMemoBinding
 
-class MyAdapter( var list : List<MemoEntity>,val deletelistener: deletelistener, val updatelistener1 : updatelistener) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(var list : List<MemoEntity>, val deletelistener: deletelistener, val updatelistener1 : updatelistener) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(val binding: ItemMemoBinding ) : RecyclerView.ViewHolder(binding.root){
         val memo = binding.memoText
@@ -16,14 +15,14 @@ class MyAdapter( var list : List<MemoEntity>,val deletelistener: deletelistener,
         val update = binding.memoUpdate
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemVIew  = ItemMemoBinding.inflate(LayoutInflater.from(parent.context),parent,false)
 
         val context = parent.context
         return MyViewHolder(itemVIew)
     }
 
-    override fun onBindViewHolder(holder: MyAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val memo = list[position]
 
         val context = holder.root.context

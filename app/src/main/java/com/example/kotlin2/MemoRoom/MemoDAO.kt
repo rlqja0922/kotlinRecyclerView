@@ -1,4 +1,4 @@
-package com.example.kotlin2
+package com.example.kotlin2.MemoRoom
 
 import androidx.room.Dao
 import androidx.room.Delete

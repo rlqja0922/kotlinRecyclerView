@@ -1,27 +1,27 @@
-package com.example.kotlin2
+package com.example.kotlin2.CoustomeAlert
 
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.EditText
 import android.widget.TextView
-import androidx.core.view.isGone
+import com.example.kotlin2.MemoRoom.MemoEntity
+import com.example.kotlin2.R
 import com.example.kotlin2.databinding.ActivityMyAlertBinding
-import com.example.kotlin2.databinding.AlertBinding
+import com.example.kotlin2.MemoRoom.deletelistener
+import com.example.kotlin2.MemoRoom.updatelistener
 
-class MyAlert(val context : Context, val deletelistener: deletelistener,val updatelistener: updatelistener,val alertint : Int){
+class MyAlert(val context : Context, val deletelistener: deletelistener, val updatelistener: updatelistener, val alertint : Int){
     private lateinit var binding: ActivityMyAlertBinding
     private lateinit var btnOK : TextView
     private lateinit var btnCancel : TextView
     private lateinit var alerttext : TextView
     private lateinit var editupdate : EditText
     private val dlg = Dialog(context)
-    fun show(memo:MemoEntity) {
+    fun show(memo: MemoEntity) {
         val layout = R.layout.activity_my_alert
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dlg.setContentView(R.layout.activity_my_alert)     //다이얼로그에 사용할 xml 파일을 불러옴
