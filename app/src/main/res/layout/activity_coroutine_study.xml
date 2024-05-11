@@ -236,13 +236,17 @@
             android:layout_height="match_parent"
             app:layout_constraintEnd_toStartOf="@+id/cort5_guideline1"
             app:layout_constraintStart_toStartOf="parent">
-            <Button
-                android:id="@+id/cort5_bt"
+            <TextView
+                android:id="@+id/cort5_text"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="코루틴 예제 실행">
-            </Button></FrameLayout>
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="4번 예제 완료tl \n suspend 함수 실행">
+            </TextView>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/coroutine_tx5_1"

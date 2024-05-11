@@ -98,7 +98,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Coroutine!"
+            android:gravity="center"
+            android:text="Coroutine Study!"
             android:textSize="15dp"
             android:textColor="@color/black"/>
     </FrameLayout>
