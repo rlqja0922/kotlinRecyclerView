@@ -11,6 +11,8 @@ class MemoActivity : AppCompatActivity(), deletelistener, updatelistener {
     lateinit var db : MemoDatabase
     private lateinit var binding : ActivityMemoBinding
     var memoList = listOf<MemoEntity>()
+    lateinit var adapter  : MyAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,6 +32,7 @@ class MemoActivity : AppCompatActivity(), deletelistener, updatelistener {
         val insertTask = object : AsyncTask<Unit, Unit, Unit>(){
             override fun doInBackground(vararg p0: Unit?) {
                 db.memoDao().insert(memo)
+                memoList = db.memoDao().getAll()
             }
 
             override fun onPostExecute(result: Unit?) {
@@ -57,7 +60,7 @@ class MemoActivity : AppCompatActivity(), deletelistener, updatelistener {
         getTask.execute()
     }
 
-    fun deleteMemo(memo : MemoEntity){
+    fun deleteMemo(memo : MemoEntity,position: Int){
         val deleteTask = object :  AsyncTask<Unit, Unit, Unit>() {
             override fun doInBackground(vararg p0: Unit?) {
                 db.memoDao().delete(memo)
@@ -71,7 +74,7 @@ class MemoActivity : AppCompatActivity(), deletelistener, updatelistener {
         deleteTask.execute()
     }
 
-    fun updateMemo(memo : MemoEntity){
+    fun updateMemo(memo : MemoEntity,position: Int){
         val updateTask = object :  AsyncTask<Unit, Unit, Unit>() {
             override fun doInBackground(vararg p0: Unit?) {
                 db.memoDao().update(memo)
@@ -79,22 +82,21 @@ class MemoActivity : AppCompatActivity(), deletelistener, updatelistener {
 
             override fun onPostExecute(result: Unit?) {
                 super.onPostExecute(result)
-                getAllMemos()
+                adapter.notifyDataSetChanged()
             }
         }
         updateTask.execute()
     }
     fun setRecyclerView(memolist : List<MemoEntity>){
-        val adapter = MyAdapter(memolist,this,this)
-
+        adapter = MyAdapter(memolist,this,this)
         binding.MemoRecyclerView.adapter = adapter
     }
 
-    override fun onDeleteListener(memoEntity: MemoEntity) {
-        deleteMemo(memoEntity)
+    override fun onDeleteListener(memoEntity: MemoEntity, position: Int) {
+        deleteMemo(memoEntity,position)
     }
 
-    override fun onupdateListener(memoEntity: MemoEntity) {
-        updateMemo(memoEntity)
+    override fun onupdateListener(memoEntity: MemoEntity,position: Int) {
+        updateMemo(memoEntity,position)
     }
 }

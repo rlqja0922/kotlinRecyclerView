@@ -1,5 +1,6 @@
 package com.example.kotlin2
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,19 +15,21 @@ import com.example.kotlin2.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     var memoList = listOf<MemoEntity>()
-    lateinit var intent : Intent
+    var intent1 = Intent()
+    lateinit var context: Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        context = this
         binding.memoFl.setOnClickListener {
-            intent = Intent(this,MemoActivity::class.java)
-            startActivity(intent)
+            intent1 = Intent(context,MemoActivity::class.java)
+            startActivity(intent1)
         }
         binding.coroutineFl.setOnClickListener {
-            intent = Intent(this,CoroutineStudyActivity::class.java)
-            startActivity(intent)
+            intent1 = Intent(context,CoroutineStudyActivity::class.java)
+            startActivity(intent1)
         }
     }
 

@@ -28,19 +28,13 @@ class MyAdapter(var list : List<MemoEntity>, val deletelistener: deletelistener,
         val context = holder.root.context
         holder.memo.text = memo.memo
         holder.remove.setOnClickListener {
-            val dlg = MyAlert(context, deletelistener,updatelistener1,0)
+            val dlg = MyAlert(context, deletelistener,updatelistener1,0,position)
             dlg.show(memo)
         }
         holder.update.setOnClickListener {
-            val dlg = MyAlert(context, deletelistener,updatelistener1,1)
+            val dlg = MyAlert(context, deletelistener,updatelistener1,1,position)
             dlg.show(memo)
         }
-//        holder.root.setOnLongClickListener(object : View.OnLongClickListener{
-//            override fun onLongClick(v: View?): Boolean {
-//                    deletelistener.onDeleteListener(memo)
-//                return true
-//            }
-//        })
     }
 
     override fun getItemCount(): Int {

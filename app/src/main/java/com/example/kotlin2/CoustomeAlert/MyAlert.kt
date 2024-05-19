@@ -14,7 +14,7 @@ import com.example.kotlin2.databinding.ActivityMyAlertBinding
 import com.example.kotlin2.MemoRoom.deletelistener
 import com.example.kotlin2.MemoRoom.updatelistener
 
-class MyAlert(val context : Context, val deletelistener: deletelistener, val updatelistener: updatelistener, val alertint : Int){
+class MyAlert(val context : Context, val deletelistener: deletelistener, val updatelistener: updatelistener, val alertint : Int,val position : Int){
     private lateinit var binding: ActivityMyAlertBinding
     private lateinit var btnOK : TextView
     private lateinit var btnCancel : TextView
@@ -41,7 +41,7 @@ class MyAlert(val context : Context, val deletelistener: deletelistener, val upd
 
                 //TODO: 부모 액티비티로 내용을 돌려주기 위해 작성할 코드
 
-                deletelistener.onDeleteListener(memo)
+                deletelistener.onDeleteListener(memo,position)
                 dlg.dismiss()
             }
         }else{
@@ -53,7 +53,7 @@ class MyAlert(val context : Context, val deletelistener: deletelistener, val upd
 
                 //TODO: 부모 액티비티로 내용을 돌려주기 위해 작성할 코드
                 memo.memo = editupdate.text.toString()
-                updatelistener.onupdateListener(memo)
+                updatelistener.onupdateListener(memo,position)
                 dlg.dismiss()
             }
 

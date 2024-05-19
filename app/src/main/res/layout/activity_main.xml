@@ -78,8 +78,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Memo!"
-            android:textSize="15dp"
+            android:gravity="center"
+            android:text="Memo \nRoomData, recyclerview"
+            android:textSize="12dp"
             android:textColor="@color/black"/>
     </FrameLayout>
 
@@ -119,8 +120,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="MVVM!"
+            android:text="MVVM!\n구현중"
             android:textSize="15dp"
+            android:gravity="center"
             android:textColor="@color/black"/>
     </FrameLayout>
 
@@ -139,8 +141,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="LiveData!"
+            android:text="LiveData!\n구현중"
             android:textSize="15dp"
+            android:gravity="center"
             android:textColor="@color/black"/>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
